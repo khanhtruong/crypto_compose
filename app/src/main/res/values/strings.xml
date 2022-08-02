@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">CryptoCompose</string>
+
+    <string name="home_screen_title">Currencies</string>
+    <string name="asset_details_screen_title">Asset details</string>
+
+
+</resources>
