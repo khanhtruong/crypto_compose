@@ -1,9 +1,15 @@
 package com.khanhtruong.cryptocompose.ui.screen.home
 
+import android.widget.ProgressBar
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
@@ -13,51 +19,80 @@ import com.khanhtruong.cryptocompose.model.Currency
 import com.khanhtruong.cryptocompose.ui.composition.CurrencyItem
 import com.khanhtruong.cryptocompose.ui.screen.Screen
 import com.khanhtruong.cryptocompose.ui.theme.CryptoComposeTheme
-import com.khanhtruong.cryptocompose.viewmodel.CurrenciesViewModel
+import com.khanhtruong.cryptocompose.viewmodel.CurrencyUiState
+import com.khanhtruong.cryptocompose.viewmodel.CurrencyViewModel
+import com.khanhtruong.cryptocompose.viewmodel.SharedViewModel
+import java.lang.Exception
 
 @Preview
 @Composable
 fun HomeIndexScreenPreview() {
-    val viewModel: CurrenciesViewModel = hiltViewModel()
+    val viewModel: SharedViewModel = hiltViewModel()
+    val currencyViewModel: CurrencyViewModel = hiltViewModel()
+
     CryptoComposeTheme() {
-        HomeIndexScreen(currenciesViewModel = viewModel) {}
+        HomeIndexScreen(sharedViewModel = viewModel, currencyViewModel = currencyViewModel) {}
     }
 }
 
 @Composable
 fun HomeIndexScreen(
-    currenciesViewModel: CurrenciesViewModel,
+    sharedViewModel: SharedViewModel,
+    currencyViewModel: CurrencyViewModel,
     navigate: (String) -> Unit = {},
 ) {
-    val context = LocalContext.current
+    val uiState = currencyViewModel.uiState.collectAsState().value
+    when (uiState) {
+        is CurrencyUiState.Success -> {
+            BuildCurrencyList(currencies = uiState.currencies) { currency ->
+                // onCardClicked
+                sharedViewModel.setCurrency(currency)
+                navigate.invoke(Screen.AssetDetails.withArgs(currency.name ?: ""))
+            }
+        }
+        is CurrencyUiState.Error -> {
+            ErrorView(uiState.exception)
+        }
+        is CurrencyUiState.Loading -> {
+            LoadingView()
+        }
+    }
+}
 
-    val currencies = listOf(
-        Currency(
-            "btc",
-            456962321113.0,
-            23914.0,
-            "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579"
-        ),
-        Currency(
-            "eth",
-            205498639817.0,
-            1714.38,
-            "https://assets.coingecko.com/coins/images/279/large/ethereum.png?1595348880"
-        ),
-    )
-
+@Composable
+fun BuildCurrencyList(currencies: List<Currency>, onCardClick: (Currency) -> Unit) {
     Column {
         // Build recycler list of currencies
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
-            contentPadding = PaddingValues(12.dp)
+            contentPadding = PaddingValues(vertical = 12.dp)
         ) {
             items(currencies) {
-                CurrencyItem(it) { currency ->
-                    // onCardClicked
-                    navigate.invoke(Screen.AssetDetails.withArgs(currency.name ?: ""))
-                }
+                CurrencyItem(it, onCardClick)
             }
         }
+    }
+}
+
+@Composable
+fun ErrorView(exception: Throwable) {
+    Text(
+        text = exception.message ?: "",
+        modifier = Modifier
+            .fillMaxWidth()
+            .fillMaxHeight()
+    )
+}
+
+@Composable
+fun LoadingView() {
+    Row(
+        modifier = Modifier.fillMaxSize(),
+        horizontalArrangement = Arrangement.Center,
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        CircularProgressIndicator(
+            color = MaterialTheme.colorScheme.primary,
+        )
     }
 }

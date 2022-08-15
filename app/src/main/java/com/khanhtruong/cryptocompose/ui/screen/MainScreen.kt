@@ -1,17 +1,20 @@
 package com.khanhtruong.cryptocompose.ui.screen
 
 import android.content.Context
-import android.util.Log
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.rememberNavController
 import com.khanhtruong.cryptocompose.R
 import com.khanhtruong.cryptocompose.ui.composition.CustomSnackbarHost
 import com.khanhtruong.cryptocompose.ui.composition.NavigationIcon
+import com.khanhtruong.cryptocompose.ui.theme.defaultTopBarColors
 
 @Composable
 fun MainScreen() {
@@ -40,6 +43,7 @@ fun MainScreenScaffold() {
             CenterAlignedTopAppBar(
                 title = { Text(title) },
                 navigationIcon = { NavigationIcon(navController) },
+                colors = defaultTopBarColors()
             )
         },
         content = { innerPadding ->
@@ -48,7 +52,7 @@ fun MainScreenScaffold() {
                 navController = navController,
                 setTitle = setTitle,
             )
-        }
+        },
     )
 }
 

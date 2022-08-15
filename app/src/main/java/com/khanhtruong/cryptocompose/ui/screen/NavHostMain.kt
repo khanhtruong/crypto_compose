@@ -9,7 +9,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.khanhtruong.cryptocompose.ui.screen.details.AssetDetailsScreen
 import com.khanhtruong.cryptocompose.ui.screen.home.HomeIndexScreen
-import com.khanhtruong.cryptocompose.viewmodel.CurrenciesViewModel
+import com.khanhtruong.cryptocompose.viewmodel.CurrencyViewModel
+import com.khanhtruong.cryptocompose.viewmodel.SharedViewModel
 
 sealed class Screen(val route: String) {
     object Home : Screen("home")
@@ -40,6 +41,11 @@ fun NavHostMain(
     navController: NavHostController,
     setTitle: (String) -> Unit
 ) {
+    // -------------- Create shared view_model -------------- //
+    // This view_model will always available between application
+    // Because it's created under [MainScreenScaffold]
+    val viewModel: SharedViewModel = hiltViewModel()
+
     // Construct base navigation graph
     NavHost(
         navController = navController,
@@ -53,10 +59,12 @@ fun NavHostMain(
         //              |Settings
         addHomeScreens(
             navController = navController,
+            viewModel = viewModel,
         )
 
         addAssetScreens(
             navController = navController,
+            viewModel = viewModel,
             setTitle = setTitle,
         )
     }
@@ -66,6 +74,7 @@ fun NavHostMain(
 // HomeIndex    ->  |RandomScreen
 private fun NavGraphBuilder.addHomeScreens(
     navController: NavHostController,
+    viewModel: SharedViewModel,
 ) {
     navigation(
         route = Screen.Home.route,
@@ -76,6 +85,7 @@ private fun NavGraphBuilder.addHomeScreens(
         )
         addHomeIndexScreen(
             navController = navController,
+            viewModel = viewModel,
         )
     }
 }
@@ -84,6 +94,7 @@ private fun NavGraphBuilder.addHomeScreens(
 // AssetDetails    ->  |AssetDetailsScreen
 private fun NavGraphBuilder.addAssetScreens(
     navController: NavHostController,
+    viewModel: SharedViewModel,
     setTitle: (String) -> Unit,
 ) {
     navigation(
@@ -92,6 +103,7 @@ private fun NavGraphBuilder.addAssetScreens(
     ) {
         addAssetDetailsScreen(
             navController = navController,
+            viewModel = viewModel,
             setTitle = setTitle,
         )
     }
@@ -100,11 +112,12 @@ private fun NavGraphBuilder.addAssetScreens(
 // Declare HomeIndexScreen compose with a navigate CallBack
 private fun NavGraphBuilder.addHomeIndexScreen(
     navController: NavHostController,
+    viewModel: SharedViewModel,
 ) {
     composable(route = HomeScreen.HomeIndex.route) {
-        val viewModel: CurrenciesViewModel = hiltViewModel()
+        val currencyViewModel: CurrencyViewModel = hiltViewModel()
 
-        HomeIndexScreen(viewModel) { route ->
+        HomeIndexScreen(viewModel, currencyViewModel) { route ->
             navController.navigate(route)
         }
     }
@@ -122,6 +135,7 @@ private fun NavGraphBuilder.addSplashScreen(
 // Declare AssetDetailsScreen compose with a navigate CallBack
 private fun NavGraphBuilder.addAssetDetailsScreen(
     navController: NavHostController,
+    viewModel: SharedViewModel,
     setTitle: (String) -> Unit
 ) {
     composable(
@@ -133,14 +147,12 @@ private fun NavGraphBuilder.addAssetDetailsScreen(
                 type = NavType.StringType
             }
         ),
-    ) { entry ->
-        entry.arguments?.getString("currency_id")?.let { currencyID ->
-            AssetDetailsScreen(setTitle, currencyID) { screen ->
-                navController.navigate(screen.route)
-            }
-        } ?: run {
-            // TODO: Open error screen
-            // CASE: Un-know or empty currency_id
+    ) {
+        viewModel.currency.value?.name?.let { name ->
+            setTitle(name.uppercase())
+        }
+        AssetDetailsScreen(viewModel) { screen ->
+            navController.navigate(screen.route)
         }
     }
 }

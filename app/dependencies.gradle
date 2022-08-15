@@ -1,0 +1,51 @@
+ext {
+    compose_version = "1.3.0-alpha01"
+    roomVersion = '2.4.0'
+    hilt_version = '2.42'
+
+    libGoogle = [
+            compose_ui                : "androidx.compose.ui:ui:$compose_version",
+            compose_ui_tooling_preview: "androidx.compose.ui:ui-tooling-preview:$compose_version",
+            compose_ui_tooling        : "androidx.compose.ui:ui-tooling:$compose_version",
+            compose_material_3        : 'androidx.compose.material3:material3:1.0.0-alpha14',
+            compose_activity          : 'androidx.activity:activity-compose:1.5.0',
+
+            // Hilt - Dependencies injection
+            compose_hilt              : "com.google.dagger:hilt-android:$hilt_version",
+            compose_hilt_compiler     : "com.google.dagger:hilt-compiler:$hilt_version",
+            compose_hilt_navigation   : "androidx.hilt:hilt-navigation-compose:1.0.0",
+
+            // Navigation
+            compose_navigation        : "androidx.navigation:navigation-compose:2.5.0",
+
+            // Image
+            compose_coil              : "io.coil-kt:coil-compose:2.1.0",
+    ]
+
+    libKotlin = [
+            kotlin_core     : 'androidx.core:core-ktx:1.8.0',
+            kotlin_lifecycle: 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.0',
+    ]
+
+    libAndroidX = [
+            roomCore    : "androidx.room:room-runtime:${roomVersion}",
+            roomCompiler: "androidx.room:room-compiler:${roomVersion}",
+            roomKtx     : "androidx.room:room-ktx:${roomVersion}"
+    ]
+
+    lib3Party = [
+            retrofitMoshi     : "com.squareup.retrofit2:converter-moshi:2.9.0",
+            retrofit2         : "com.squareup.retrofit2:retrofit:2.8.1",
+            retrofit2Converter: "com.squareup.retrofit2:converter-gson:2.5.0",
+            okhttp3Logging    : "com.squareup.okhttp3:logging-interceptor:4.10.0",
+            chart             : "io.github.bytebeats:compose-charts:0.1.2",
+    ]
+
+    libTest = [
+            test_junit        : 'junit:junit:4.13.2',
+            test_junit_ext    : 'androidx.test.ext:junit:1.1.3',
+            test_espresso_core: 'androidx.test.espresso:espresso-core:3.4.0',
+            test_junit_4      : "androidx.compose.ui:ui-test-junit4:$compose_version",
+            test_ui_manifest  : "androidx.compose.ui:ui-test-manifest:$compose_version",
+    ]
+}
