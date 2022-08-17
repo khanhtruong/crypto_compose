@@ -1,16 +1,16 @@
 package com.khanhtruong.cryptocompose.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.khanhtruong.cryptocompose.model.Currency
 import com.khanhtruong.cryptocompose.repository.CurrencyRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 sealed class CurrencyUiState {
@@ -25,16 +25,29 @@ class CurrencyViewModel @Inject constructor(private val currencyRepo: CurrencyRe
         MutableStateFlow(CurrencyUiState.Loading)
     val uiState: StateFlow<CurrencyUiState> = _uiState
 
+    private val _isRefreshing: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    val isRefreshing: StateFlow<Boolean> = _isRefreshing
+
     init {
-        viewModelScope.launch {
-            currencyRepo.getCurrencies("usd")
-                .catch { err ->
-                    _uiState.value = CurrencyUiState.Error(err)
-                }
-                .collectLatest {
-                    delay(1000L)
-                    _uiState.value = CurrencyUiState.Success(it)
-                }
-        }
+        refreshCurrencyList(true)
+    }
+
+    private fun refreshCurrencyList(refresh: Boolean) {
+        currencyRepo.getCurrencies(refresh, "usd")
+            .catch { err ->
+                _uiState.value = CurrencyUiState.Error(err)
+            }
+            .onEach { currencies ->
+                _uiState.value = CurrencyUiState.Success(currencies)
+            }.onCompletion {
+                _isRefreshing.value = false
+            }
+            .launchIn(viewModelScope)
+    }
+
+    fun refresh() {
+        _isRefreshing.value = true
+        _uiState.value = CurrencyUiState.Loading
+        refreshCurrencyList(true)
     }
 }

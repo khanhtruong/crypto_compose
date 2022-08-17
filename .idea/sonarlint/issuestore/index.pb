@@ -15,8 +15,6 @@ z
 Japp/src/main/java/com/khanhtruong/cryptocompose/ui/composition/Snackbar.kt,a/1/a136c72eccc443b45d5232a28d2fe7cd12a1b9bd
 ‡
 Wapp/src/main/java/com/khanhtruong/cryptocompose/ui/screen/details/AssetDetailsScreen.kt,3/a/3ad3e81d531dc4044d82b87b58bb60952d96ada0
-x
-Happ/src/main/java/com/khanhtruong/cryptocompose/ui/composition/TopBar.kt,8/3/83ae07996948b59fece0e5bd9cfeebc183a02adf
 q
 Aapp/src/main/java/com/khanhtruong/cryptocompose/ui/theme/Theme.kt,9/f/9f8e787b31a9cfd551033c691bff5512f08aa536
 y
@@ -29,10 +27,6 @@ q
 Aapp/src/main/java/com/khanhtruong/cryptocompose/ui/theme/Color.kt,1/8/186fbdf0d99131f2680f32e460466e401119c745
 <
 build.gradle,f/0/f07866736216be0ee2aba49e392191aeae700a35
-x
-Happ/src/main/java/com/khanhtruong/cryptocompose/ui/screen/NavHostMain.kt,f/7/f7d5629d2aeaadad43f482d3177d8beb13f67bc9
-|
-Lapp/src/main/java/com/khanhtruong/cryptocompose/repository/CurrencyModule.kt,7/d/7dc675871b7678468fc0cb93574413b6de53092a
 m
 =app/src/main/java/com/khanhtruong/cryptocompose/util/Utils.kt,7/4/74bb83fe24c8265f6c5bf25673ea31c8e59397b3
 q
@@ -53,29 +47,27 @@ q
 Aapp/src/main/java/com/khanhtruong/cryptocompose/model/Currency.kt,2/f/2fe4bc3f51d44050029f8c31ff58697cebc82195
 s
 Capp/src/main/java/com/khanhtruong/cryptocompose/ui/theme/Spacing.kt,a/6/a6bac8e75486ceba1d81605be70cac8c8d52db03
-z
-Japp/src/main/java/com/khanhtruong/cryptocompose/repository/CurrencyRepo.kt,3/4/34099fdd132a5a9759fa4104fc2872d335f6926b
-x
-Happ/src/main/java/com/khanhtruong/cryptocompose/database/DatabaseRepo.kt,b/0/b01777a82aaf87e3303face92fbe4fbfd50f9aa8
-s
-Capp/src/main/java/com/khanhtruong/cryptocompose/database/dao/Dao.kt,4/3/4376b4b30c2f6742a6ad176a171ec7fe08a78e76
-z
-Japp/src/main/java/com/khanhtruong/cryptocompose/network/api/CurrencyAPI.kt,b/7/b740cc8464017046ab9c9e6cac1a362d78aa7fc3
-@
-app/build.gradle,f/4/f4a01d6a4fcb971362ec00a83903fd3902f52164
-
-Qapp/src/main/java/com/khanhtruong/cryptocompose/ui/screen/home/HomeIndexScreen.kt,c/b/cb58da6ad39bb219cd1ff96b9835c0cda7280d4a
-G
-app/dependencies.gradle,3/d/3df7a24b11cc2e558bb8a5af949823f47dee0403
-~
-Napp/src/main/java/com/khanhtruong/cryptocompose/viewmodel/CurrencyViewModel.kt,f/3/f39598ca620f3904cede873b021427c5ec6885fd
 }
 Mapp/src/main/java/com/khanhtruong/cryptocompose/network/config/APIProvider.kt,d/6/d6e9777a64b7e8e0b6bb07393fdee09631a9dc73
+P
+ app/src/main/AndroidManifest.xml,8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e
 ~
 Napp/src/main/java/com/khanhtruong/cryptocompose/ui/composition/CurrencyItem.kt,9/f/9fdfcaecae892403b4e073a9f33e0c645b41f906
 v
 Fapp/src/main/java/com/khanhtruong/cryptocompose/ui/composition/Coil.kt,3/8/38f75803ec4e97edd5eb7f487b9d3a25bd173a2b
+s
+Capp/src/main/java/com/khanhtruong/cryptocompose/database/dao/Dao.kt,4/3/4376b4b30c2f6742a6ad176a171ec7fe08a78e76
+x
+Happ/src/main/java/com/khanhtruong/cryptocompose/ui/screen/NavHostMain.kt,f/7/f7d5629d2aeaadad43f482d3177d8beb13f67bc9
+@
+app/build.gradle,f/4/f4a01d6a4fcb971362ec00a83903fd3902f52164
+G
+app/dependencies.gradle,3/d/3df7a24b11cc2e558bb8a5af949823f47dee0403
+x
+Happ/src/main/java/com/khanhtruong/cryptocompose/database/DatabaseRepo.kt,b/0/b01777a82aaf87e3303face92fbe4fbfd50f9aa8
 w
 Gapp/src/main/java/com/khanhtruong/cryptocompose/ui/screen/MainScreen.kt,0/a/0ab1f7e78ca7339f7d9d5c5cf944ced6ffebee33
-P
- app/src/main/AndroidManifest.xml,8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e
+x
+Happ/src/main/java/com/khanhtruong/cryptocompose/ui/composition/TopBar.kt,8/3/83ae07996948b59fece0e5bd9cfeebc183a02adf
+~
+Napp/src/main/java/com/khanhtruong/cryptocompose/viewmodel/CurrencyViewModel.kt,f/3/f39598ca620f3904cede873b021427c5ec6885fd

@@ -15,12 +15,12 @@ android {
             keyPassword '9E2jm9mWT8Dh'
         }
     }
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.khanhtruong.cryptocompose"
         minSdk 24
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -78,6 +78,8 @@ dependencies {
     implementation libGoogle.compose_navigation
     //  - Image
     implementation libGoogle.compose_coil
+    //  - Swipe to refresh
+    implementation libGoogle.swipeRefresh
 
     // Lib AndroidX
     // - Room

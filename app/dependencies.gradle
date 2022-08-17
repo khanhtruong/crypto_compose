@@ -20,6 +20,9 @@ ext {
 
             // Image
             compose_coil              : "io.coil-kt:coil-compose:2.1.0",
+
+            // Swipe to refresh
+            swipeRefresh              : "com.google.accompanist:accompanist-swiperefresh:0.26.1-alpha",
     ]
 
     libKotlin = [
