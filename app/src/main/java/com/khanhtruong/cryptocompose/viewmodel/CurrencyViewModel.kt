@@ -1,16 +1,11 @@
 package com.khanhtruong.cryptocompose.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.khanhtruong.cryptocompose.model.Currency
 import com.khanhtruong.cryptocompose.repository.CurrencyRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 sealed class CurrencyUiState {

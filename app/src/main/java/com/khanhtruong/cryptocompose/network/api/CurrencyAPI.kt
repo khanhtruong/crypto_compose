@@ -2,8 +2,6 @@ package com.khanhtruong.cryptocompose.network.api
 
 import com.khanhtruong.cryptocompose.model.Currency
 import com.khanhtruong.cryptocompose.network.config.APIProvider
-import kotlinx.coroutines.flow.Flow
-import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 

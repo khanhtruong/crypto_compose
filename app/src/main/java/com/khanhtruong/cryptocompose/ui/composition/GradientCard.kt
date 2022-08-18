@@ -14,7 +14,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.TileMode
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import com.khanhtruong.cryptocompose.ui.theme.GradientColorEnd
 import com.khanhtruong.cryptocompose.ui.theme.GradientColorStart
 import com.khanhtruong.cryptocompose.ui.theme.defaultCardColors

@@ -2,9 +2,7 @@ package com.khanhtruong.cryptocompose.model
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.google.gson.annotations.SerializedName
 import com.squareup.moshi.Json
-import retrofit2.http.Field
 
 data class Currency(
     @field:Json(name = "id") var id: String? = null,

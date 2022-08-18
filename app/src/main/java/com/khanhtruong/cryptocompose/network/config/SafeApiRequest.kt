@@ -1,7 +1,5 @@
 package com.khanhtruong.cryptocompose.network.config
 
-import android.content.Context
-import com.khanhtruong.cryptocompose.util.Utils
 import kotlinx.coroutines.CancellationException
 import org.json.JSONException
 import org.json.JSONObject
